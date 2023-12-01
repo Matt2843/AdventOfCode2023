@@ -1,6 +1,6 @@
 use itertools::{self, Itertools};
 
-fn contains_digit10(a: &str) -> Option<char> {
+fn get_digit(a: &str) -> Option<char> {
     if let Some(d) = a.chars().find(|c| c.is_digit(10)) {
         Some(d)
     } else {
@@ -24,11 +24,9 @@ fn solve_2(input: &str) -> usize {
     input
         .lines()
         .flat_map(|l| {
-            let first = (0..l.len())
-                .find_map(|s| contains_digit10(&l[..=s]))
-                .unwrap();
+            let first = (0..l.len()).find_map(|s| get_digit(&l[..=s])).unwrap();
             let last = (0..l.len())
-                .find_map(|s| contains_digit10(&l[(l.len() - (s + 1))..]))
+                .find_map(|s| get_digit(&l[(l.len() - (s + 1))..]))
                 .unwrap();
             let s = format!("{first}{last}");
             s.parse::<usize>()
