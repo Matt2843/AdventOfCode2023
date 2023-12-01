@@ -2,9 +2,7 @@ pub mod aoc_util;
 pub mod day1;
 
 fn day_modules() -> Vec<fn(&str) -> (usize, usize)> {
-    vec![
-        day1::solve,
-    ]
+    vec![day1::solve]
 }
 
 #[allow(dead_code)]
@@ -31,6 +29,6 @@ pub fn solve_latest(year: u32) {
 }
 
 // pub fn solve(input: &str) -> (usize, usize) {
-//     println!("{input}");
+//     dbg!("{input}");
 //     (0,0)
 // }
