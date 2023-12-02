@@ -1,7 +1,7 @@
 use itertools::{self, Itertools};
 
 fn get_digit(a: &str) -> Option<char> {
-    if let Some(d) = a.chars().find(|c| c.is_digit(10)) {
+    if let Some(d) = a.chars().find(|c| c.is_ascii_digit()) {
         Some(d)
     } else {
         match a {
@@ -37,7 +37,7 @@ fn solve_2(input: &str) -> usize {
 fn solve_1(input: &str) -> usize {
     input
         .lines() // could also be \n\n
-        .map(|l| l.chars().filter(|c| c.is_digit(10)).collect_vec())
+        .map(|l| l.chars().filter(|c| c.is_ascii_digit()).collect_vec())
         .map(|v| format!("{}{}", v.first().unwrap(), v.last().unwrap()))
         .flat_map(|s| s.parse::<usize>())
         .sum()
