@@ -5,9 +5,9 @@ use regex::Regex;
 use std::collections::HashMap;
 
 fn parse(input: &str) -> (Vec<char>, HashMap<&str, (&str, &str)>) {
+    let re = Regex::new(r"\w+").unwrap();
     let (instructions, map) = input.trim().split_once("\n\n").unwrap();
     let map = map.lines().fold(HashMap::new(), |mut acc, x| {
-        let re = Regex::new(r"\w+").unwrap();
         let (key, val) = x.split_once(" = ").unwrap();
         let (left, right) = re
             .find_iter(val)
