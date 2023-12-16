@@ -27,8 +27,8 @@ fn manhatten_distance(p1: (usize, usize), p2: (usize, usize)) -> usize {
 }
 
 fn solve_puzzle(grid: &Vec<Vec<char>>, expansion_factor: usize) -> usize {
-    let empty_rows = empty_r(&grid);
-    let empty_cols = empty_r(&transpose(&grid));
+    let empty_rows = empty_r(grid);
+    let empty_cols = empty_r(&transpose(grid));
     grid.iter()
         .enumerate()
         .flat_map(|(i, l)| {

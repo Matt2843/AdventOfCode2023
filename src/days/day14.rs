@@ -66,7 +66,7 @@ fn solve_2(grid: &mut Vec<Vec<char>>) -> usize {
     while i < n {
         i += 1;
         next_grid(grid, &dirs);
-        cycle_vec.push(calc_north_load(&grid));
+        cycle_vec.push(calc_north_load(grid));
         if let Some(cycle) = find_max_cycle(&cycle_vec, 5) {
             let x = (n - i) / cycle.len();
             i += x * cycle.len();

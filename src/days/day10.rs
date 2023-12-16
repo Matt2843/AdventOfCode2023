@@ -24,28 +24,28 @@ fn include(grid: &Vec<Vec<char>>, pos: (usize, usize), dir: Direction) -> Option
     let ch = grid[x][y];
     match dir {
         Direction::North => {
-            if vec!['|', 'F', '7'].contains(&ch) {
+            if ['|', 'F', '7'].contains(&ch) {
                 Some((x, y))
             } else {
                 None
             }
         }
         Direction::South => {
-            if vec!['|', 'J', 'L'].contains(&ch) {
+            if ['|', 'J', 'L'].contains(&ch) {
                 Some((x, y))
             } else {
                 None
             }
         }
         Direction::West => {
-            if vec!['-', 'F', 'L'].contains(&ch) {
+            if ['-', 'F', 'L'].contains(&ch) {
                 Some((x, y))
             } else {
                 None
             }
         }
         Direction::East => {
-            if vec!['-', 'J', '7'].contains(&ch) {
+            if ['-', 'J', '7'].contains(&ch) {
                 Some((x, y))
             } else {
                 None
@@ -112,7 +112,7 @@ fn solve_2(grid: &Vec<Vec<char>>, explored: &HashSet<(usize, usize)>) -> usize {
         .filter(|&(i, j)| {
             (0..j)
                 .fold(0, |acc, d| {
-                    if explored.contains(&(i, d)) && vec!['|', 'J', 'L'].contains(&grid[i][d]) {
+                    if explored.contains(&(i, d)) && ['|', 'J', 'L'].contains(&grid[i][d]) {
                         acc + 1
                     } else {
                         acc
@@ -129,10 +129,7 @@ pub fn solve(input: &str) -> (usize, usize) {
     let start = grid
         .iter()
         .enumerate()
-        .find_map(|(i, l)| match l.iter().position(|c| *c == 'S') {
-            Some(j) => Some((i, j)),
-            _ => None,
-        })
+        .find_map(|(i, l)| l.iter().position(|c| *c == 'S').map(|j| (i, j)))
         .unwrap();
     let (explored, s1) = bfs(&grid, start);
     (s1, solve_2(&grid, &explored))

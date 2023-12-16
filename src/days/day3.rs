@@ -8,7 +8,7 @@ fn adjacent_symbols(grid: &Vec<Vec<char>>, x: &usize, y: &usize) -> HashSet<(usi
             let dxx = (*x as i32 + dx) as usize;
             let dyy = (*y as i32 + dy) as usize;
             if !(0..grid.len()).contains(&dxx) || !(0..grid[0].len()).contains(&dyy) {
-                return None;
+                None
             } else {
                 let ch = grid[dxx][dyy];
                 if !ch.is_ascii_digit() && ch != '.' {
@@ -34,7 +34,7 @@ fn solve_d(input: &str) -> (usize, usize) {
                 num.push(*c);
                 let symbols = adjacent_symbols(&grid, &i, &j);
                 for (x, y, _) in symbols.iter().filter(|(_, _, c)| *c == '*') {
-                    gears.insert((x.clone(), y.clone()));
+                    gears.insert((*x, *y));
                 }
                 if !symbols.is_empty() {
                     add = true;

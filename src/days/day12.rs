@@ -109,6 +109,6 @@ fn solve_2(input: &[(Vec<char>, Vec<usize>)]) -> usize {
 }
 
 pub fn solve(input: &str) -> (usize, usize) {
-    let parsed = input.trim().lines().map(|l| parse(l)).collect_vec();
+    let parsed = input.trim().lines().map(parse).collect_vec();
     (solve_1(&parsed), solve_2(&parsed))
 }
