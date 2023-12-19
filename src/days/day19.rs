@@ -118,14 +118,14 @@ fn solve_ranges(
 
 fn solve_1(rules: &AHashMap<String, Vec<Rule>>, xmas: &[Vec<usize>]) -> usize {
     xmas.iter()
-        .filter(|x| filter_xmas(x, &rules, &String::from("in")))
+        .filter(|x| filter_xmas(x, rules, &String::from("in")))
         .map(|x| x.iter().sum::<usize>())
         .sum()
 }
 
 fn solve_2(rules: &AHashMap<String, Vec<Rule>>) -> usize {
     let mut xmas = std::iter::repeat(1..=4000).take(4).collect_vec();
-    solve_ranges(&mut xmas, &rules, &String::from("in"))
+    solve_ranges(&mut xmas, rules, &String::from("in"))
 }
 
 pub fn solve(input: &str) -> (usize, usize) {

@@ -65,33 +65,27 @@ impl CrucibleState {
                 } else {
                     self.dr < 10
                 }
+            } else if nd == self.d {
+                self.dr < 3
             } else {
-                if nd == self.d {
-                    self.dr < 3
-                } else {
-                    true
-                }
+                true
             }
         })
         .flat_map(|dr| {
             if dr == self.d {
-                self.try_get(grid, dr).and_then(|l| {
-                    Some(CrucibleState::new(
+                self.try_get(grid, dr).map(|l| CrucibleState::new(
                         l,
                         self.g + grid[l.0 as usize][l.1 as usize],
                         dr,
                         self.dr + 1,
                     ))
-                })
             } else {
-                self.try_get(grid, dr).and_then(|l| {
-                    Some(CrucibleState::new(
+                self.try_get(grid, dr).map(|l| CrucibleState::new(
                         l,
                         self.g + grid[l.0 as usize][l.1 as usize],
                         dr,
                         1,
                     ))
-                })
             }
         })
         .collect()
