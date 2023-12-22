@@ -30,10 +30,9 @@ fn solve_puzzle(grid: &[Vec<char>], start: (isize, isize), steps_exact: usize) -
         q = q
             .into_iter()
             .flat_map(|s| {
-                neighbours(&grid, s)
+                neighbours(grid, s)
                     .into_iter()
                     .filter(|n| !e.contains(n))
-                    .map(|n| n)
                     .collect_vec()
             })
             .collect();
@@ -71,11 +70,7 @@ pub fn solve(input: &str) -> (usize, usize) {
         .iter()
         .enumerate()
         .find_map(|(r, l)| {
-            if let Some(c) = l.iter().position(|ch| ch == &'S') {
-                Some((r as isize, c as isize))
-            } else {
-                None
-            }
+            l.iter().position(|ch| ch == &'S').map(|c| (r as isize, c as isize))
         })
         .unwrap();
     (
