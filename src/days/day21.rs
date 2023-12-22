@@ -54,7 +54,7 @@ fn solve_puzzle(grid: &[Vec<char>], start: (isize, isize), steps_exact: usize) -
         }
     }
     while reached < steps_exact {
-        reached += 262;
+        reached += grid.len() * 2;
         count += cur_steps;
         cur_steps += incr;
     }
