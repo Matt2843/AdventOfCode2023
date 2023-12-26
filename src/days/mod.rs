@@ -14,6 +14,9 @@ pub mod day2;
 pub mod day20;
 pub mod day21;
 pub mod day22;
+pub mod day23;
+pub mod day24;
+pub mod day25;
 pub mod day3;
 pub mod day4;
 pub mod day5;
@@ -46,6 +49,9 @@ fn day_modules() -> Vec<fn(&str) -> (usize, usize)> {
         day20::solve,
         day21::solve,
         day22::solve,
+        day23::solve,
+        day24::solve,
+        day25::solve,
     ]
 }
 

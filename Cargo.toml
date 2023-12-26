@@ -12,6 +12,8 @@ rayon = "1.6.1"
 ahash = "0.8.2"
 anyhow = "1.0.75"
 num = "0.4.1"
-z3 = "0.12.1"
+rustworkx-core = "0.13.2"
+z3 = {version="0.12", features = ["static-link-z3"]}
+
 [profile.release]
 opt-level = 3
